@@ -47,7 +47,7 @@ SECRET_KEY = "django-insecure-ezpo8cycf*)-0mlb$5unoz#g5ov5hh2n6(!&6v3j!+h*#uxn$7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app']
 
 
 
@@ -284,7 +284,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000", 
-    "https://lianshuiqing.vercel.app"
+    "https://lianshuiqing.vercel.app",
+    "https://lianshuiqing-admin-qfh2.vercel.app"
 ] 
          
 
@@ -292,7 +293,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
-    "https://lianshuiqing.vercel.app"
+    "https://lianshuiqing.vercel.app",
+    "https://lianshuiqing-admin-qfh2.vercel.app"
 ]    
 
 
