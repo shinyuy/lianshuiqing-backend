@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     # Fidelity Cards
-    path('fidelity-cards/', views.FidelityCardListCreateView.as_view(), name='fidelity-card-list-create'),
-    path('fidelity-cards/<int:pk>/', views.FidelityCardDetailView.as_view(), name='fidelity-card-detail'),
+    path('admin/fidelity-cards', views.FidelityCardApiView.as_view(), name='fidelity-cards'),
+    path('admin/fidelity-cards/<int:id>', views.DeleteFidelityCardApiView.as_view(), name='fidelity-card-detail'),
 ]
