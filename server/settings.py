@@ -47,6 +47,11 @@ SECRET_KEY = "django-insecure-ezpo8cycf*)-0mlb$5unoz#g5ov5hh2n6(!&6v3j!+h*#uxn$7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+RESEND_API_KEY = getenv("RESEND_API_KEY")  # Get it from https://resend.com/api-keys
+DEFAULT_FROM_EMAIL = "noreply@updates.contexxai.com"
+FRONTEND_BASE_URL = "https://contexxai.com" 
+
+
 ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app']
 
 
@@ -75,7 +80,8 @@ INSTALLED_APPS = [
     'raffle_entry',
     'raffle_winner',
     'waiter_feedback',
-    'waiter_points'
+    'waiter_points',
+    'waiters'
 ]
 
 MIDDLEWARE = [
@@ -282,6 +288,7 @@ LOGGING = {
 
 CORS_ALLOWED_ORIGINS = [ 
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://127.0.0.1:3000",
     "http://localhost:8000", 
     "https://lianshuiqing.vercel.app",
@@ -291,6 +298,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [     
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "https://lianshuiqing.vercel.app",

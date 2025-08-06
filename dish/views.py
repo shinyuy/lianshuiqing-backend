@@ -36,8 +36,11 @@ class AddDishApiView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             user = UserAccount.objects.get(id=request.user.id)
-           
+
             name = request.data.get('name')
+            description = request.data.get('description')
+            history = request.data.get('history')
+            preparation = request.data.get('preparation')
             category = request.data.get('category')
             price = request.data.get('price')
             image = request.data.get('image')
@@ -48,11 +51,14 @@ class AddDishApiView(APIView):
 
             data = {
                 'name': name,
+                'description': description,
+                'history': history,
+                'preparation': preparation,
                 'category': category,
                 'price': price,
                 'image': image,
                 'tags': tags,
-                'owner': request.user.id  # assuming the Dish model has a foreign key to user as 'owner'
+                'owner': request.user.id  # Optional if you have an owner field
             }
 
             serializer = DishSerializer(data=data)
@@ -66,7 +72,7 @@ class AddDishApiView(APIView):
             return JsonResponse({'error': 'User not found'}, status=404)
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
-        
+   
     def get(self, request, *args, **kwargs):
             try:
                 dishes = Dish.objects.all()
@@ -87,9 +93,26 @@ class GetDishApiView(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
         
+class GetSingleDishApiView(APIView):
+    permission_classes = [permissions.AllowAny]        
+
+    def get(self, request, *args, **kwargs):
+        dish_id = kwargs.get('id')
+        if not dish_id:
+            return JsonResponse({'error': 'Dish ID is required.'}, status=400)
+
+        try:
+            dish = Dish.objects.get(id=dish_id)
+            serializer = DishSerializer(dish)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Dish.DoesNotExist:
+            return JsonResponse({'error': 'Dish not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)        
+        
 class EditDeleteDishApiView(APIView):
     permission_classes = [permissions.IsAuthenticated]        
-    
+      
     def put(self, request, dish_id=None, *args, **kwargs):
         try:
             dish = Dish.objects.get(id=dish_id)

@@ -7,10 +7,16 @@ from django.contrib.auth.models import (
 from django.conf import settings
 from django.core.mail import send_mail
 import uuid
+import string
+import secrets
 # from branch.models import Branch
 
 
 class UserAccountManager(BaseUserManager):
+    def generate_random_password(self, length=10):
+        chars = string.ascii_letters + string.digits + string.punctuation
+        return ''.join(secrets.choice(chars) for _ in range(length))
+    
     def create_user(self, email, password=None, **kwargs):
         if not email:
             raise ValueError('Users must have an email address')
@@ -51,9 +57,16 @@ class UserAccountManager(BaseUserManager):
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
+    ROLE_CHOICES = (
+        ('user', 'User'),
+        ('waiter', 'Waiter'),
+        ('admin', 'Admin/Manager'),
+    )
+       
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True, max_length=255)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
     external_id = models.UUIDField(default=uuid.uuid4, editable=False)
     
       # Add the branch field
@@ -71,4 +84,5 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+  
   

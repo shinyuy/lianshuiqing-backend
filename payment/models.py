@@ -5,10 +5,12 @@ class Payment(models.Model):
     PAYMENT_METHODS = [
         ('cash', 'Cash'),
         ('mobile_money', 'Mobile Money'),
+        ('orange_money', 'Orange Money'),
         ('card', 'Card'),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments', null=True, blank=True)
     order = models.ForeignKey('order.Order', on_delete=models.CASCADE, related_name='payments')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     method = models.CharField(max_length=20, choices=PAYMENT_METHODS)
