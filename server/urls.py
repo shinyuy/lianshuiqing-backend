@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/', include('raffle_winner.urls')),
     path('api/', include('waiter_feedback.urls')),
     path('api/', include('waiter_points.urls')),
-    path('api/', include('waiters.urls'))
+    path('api/', include('waiters.urls')),
+    path('api/', include('reservations.urls'))
 ]
 

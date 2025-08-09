@@ -52,7 +52,7 @@ DEFAULT_FROM_EMAIL = "noreply@updates.contexxai.com"
 FRONTEND_BASE_URL = "https://contexxai.com" 
 
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app', 'lianshuiqing.com', 'admin.lianshuiqing.com']
 
 
 
@@ -81,7 +81,8 @@ INSTALLED_APPS = [
     'raffle_winner',
     'waiter_feedback',
     'waiter_points',
-    'waiters'
+    'waiters',
+    'reservations'
 ]
 
 MIDDLEWARE = [
@@ -292,7 +293,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000", 
     "https://lianshuiqing.vercel.app",
-    "https://lianshuiqing-admin-qfh2.vercel.app"
+    "https://lianshuiqing-admin-qfh2.vercel.app",
+     "https://lianshuiqing.com",
+    "https://admin.lianshuiqing.com"
 ] 
          
 
@@ -302,7 +305,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "https://lianshuiqing.vercel.app",
-    "https://lianshuiqing-admin-qfh2.vercel.app"
+    "https://lianshuiqing-admin-qfh2.vercel.app",
+    "https://lianshuiqing.com",
+    "https://admin.lianshuiqing.com"
 ]    
 
 
