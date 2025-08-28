@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from .models import FidelityCard
+from .models import FidelityCard, FidelityCardSubscription
 
 
 class FidelityCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = FidelityCard
+        fields = '__all__'
+        
+        
+class FidelityCardSubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FidelityCardSubscription
         fields = '__all__'
 
 

@@ -82,7 +82,8 @@ INSTALLED_APPS = [
     'waiter_feedback',
     'waiter_points',
     'waiters',
-    'reservations'
+    'reservations',
+    # 'order.apps.OrdersConfig'
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
         },
-    },
+    },  
 ]
   
 WSGI_APPLICATION = "server.wsgi.application"
@@ -123,7 +124,6 @@ WSGI_APPLICATION = "server.wsgi.application"
 DATABASES = {}
 try:
     if DEVELOPMENT_MODE is True:  
-        print("oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
         DATABASES = {
         "default" : {  
             "ENGINE": "django.db.backends.postgresql",     

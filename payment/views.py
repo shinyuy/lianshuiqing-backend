@@ -23,6 +23,7 @@ from asgiref.sync import sync_to_async
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from dish.models import Dish
+from fidelity_card.models import FidelityCardSubscription
 
 
 
@@ -118,6 +119,8 @@ class MomoCartPaymentApiView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
+        print("11111111111111111111111111111111111111111111111111111111111111")
+        print(request.data)
         phone = request.data.get("phone")
         amount = request.data.get("amount")
         items = request.data.get("items")  # list of item names or objects
@@ -186,6 +189,18 @@ class MomoCartPaymentApiView(APIView):
                     method=payment_method,
                     is_successful=True
                 )
+                
+                def update_fidelity(user):
+                    sub = FidelityCardSubscription.objects.filter(
+                        user=user, status="active"
+                    ).order_by("-start_date").first()
+                    if sub:
+                        sub.reset_monthly_orders_if_needed()
+                        sub.add_order()
+                        return True
+                    return False
+
+                updated = await sync_to_async(update_fidelity)(user)
                 
                 return {"message": "Payment successful", "status": "SUCCESSFUL", "order_id": order.id}
 
