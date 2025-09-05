@@ -18,7 +18,7 @@ from os import getenv, path
 from pathlib import Path  
 from django.core.management.utils import get_random_secret_key
 import dotenv
-# from .DEFAULTS import DEFAULT_HEADERS
+from .DEFAULTS import DEFAULT_HEADERS
 import dj_database_url
 from django.db import connections
 from django.db.utils import OperationalError   
@@ -229,7 +229,7 @@ DJOSER = {
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': getenv('REDIRECT_URLS').split(','),
     
      'EMAIL': {
-        'password_reset': 'bot_api.email.PasswordResetEmail',
+        'password_reset': 'servers.email.PasswordResetEmail',
     }
 }
 
@@ -325,7 +325,7 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-# CORS_ALLOW_HEADERS = DEFAULT_HEADERS    
+CORS_ALLOW_HEADERS = DEFAULT_HEADERS    
   
   
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
