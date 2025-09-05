@@ -116,7 +116,7 @@ class UserFidelityCardSubscriptionsView(APIView):
         """
         Return all fidelity card subscriptions for a given user.
         """
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(UserAccount, id=user_id)
         subscriptions = FidelityCardSubscription.objects.filter(user=user)
 
         serializer = FidelityCardSubscriptionSerializer(subscriptions, many=True)
