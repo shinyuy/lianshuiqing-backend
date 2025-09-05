@@ -244,6 +244,15 @@ SESSION_COOKIE_SAMESITE = 'None'  # Or 'None' if frontend and backend are on dif
 SESSION_COOKIE_AGE = 3600  # 1 hour
 
 
+CSRF_COOKIE_SAMESITE = "None"
+
+
+# If frontend and backend use different subdomains
+SESSION_COOKIE_DOMAIN = ".lianshuiqing.com"
+CSRF_COOKIE_DOMAIN = ".lianshuiqing.com"
+
+
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = getenv('GOOGLE_AUTH_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = getenv('GOOGLE_AUTH_SECRET_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
