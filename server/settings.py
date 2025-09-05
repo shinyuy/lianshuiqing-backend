@@ -47,6 +47,10 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  getenv("DEBUG", "False") == "True"
 
+RESEND_API_KEY = getenv("RESEND_API_KEY")  # Get it from https://resend.com/api-keys
+DEFAULT_FROM_EMAIL = "noreply@updates.lianshuiqing.com"
+FRONTEND_BASE_URL = "https://lianshuiqing.com" 
+
 
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app', 'lianshuiqing.com', 'admin.lianshuiqing.com']
@@ -243,13 +247,6 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'None'  # Or 'None' if frontend and backend are on different domains
 SESSION_COOKIE_AGE = 3600  # 1 hour
 
-
-CSRF_COOKIE_SAMESITE = "None"
-
-
-# If frontend and backend use different subdomains
-SESSION_COOKIE_DOMAIN = ".lianshuiqing.com"
-CSRF_COOKIE_DOMAIN = ".lianshuiqing.com"
 
 
 
