@@ -42,14 +42,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ezpo8cycf*)-0mlb$5unoz#g5ov5hh2n6(!&6v3j!+h*#uxn$7"
+SECRET_KEY = getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =  getenv("DEBUG", "False") == "True"
 
-RESEND_API_KEY = getenv("RESEND_API_KEY")  # Get it from https://resend.com/api-keys
-DEFAULT_FROM_EMAIL = "noreply@updates.contexxai.com"
-FRONTEND_BASE_URL = "https://contexxai.com" 
 
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost', 'lianshuiqing-backend.onrender.com', 'lianshuiqing-admin-qfh2.vercel.app', 'lianshuiqing.vercel.app', 'lianshuiqing.com', 'admin.lianshuiqing.com']
@@ -294,7 +291,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000", 
     "https://lianshuiqing.vercel.app",
     "https://lianshuiqing-admin-qfh2.vercel.app",
-     "https://lianshuiqing.com",
+    "https://lianshuiqing.com",
     "https://admin.lianshuiqing.com"
 ] 
          
